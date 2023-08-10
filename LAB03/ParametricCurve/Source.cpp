@@ -1,3 +1,5 @@
+// Lab Activity 8
+
 #include <gl/glut.h>
 #include <cmath>
 
