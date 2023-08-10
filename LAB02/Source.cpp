@@ -12,6 +12,7 @@ void initGL() {
     glClearColor(135 / 255.0, 206 / 255.0, 235 / 255.0, 1.0f / 255.0);
 }
 
+// code for circle
 void circle(GLfloat rx, GLfloat ry, GLfloat cx, GLfloat cy)
 {
     glBegin(GL_POLYGON);
