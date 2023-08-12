@@ -19,7 +19,7 @@ green = 1.0; // possible triangle colors.
 void renderScene(void) {
 	// the callback to draw the triangle
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	glRotatef(angle, 0.0, 1.0, 0.0); // rotate the triangle a little more 
 	glColor3f(red, green, blue);// change its color
 
@@ -81,16 +81,51 @@ void main(int argc, char** argv) {
 
 	glutCreateWindow("Menu Test"); // open an OpenGL window 
 	glutDisplayFunc(renderScene); // register display function
-	
+
 	glutIdleFunc(renderScene); // calls to functions to create
 
 	glutCreateMenu(processMenuEvents);
 
 	glutAddMenuEntry("Red", RED);
-    glutAddMenuEntry("Blue", BLUE);
+	glutAddMenuEntry("Blue", BLUE);
 	glutAddMenuEntry("Green", GREEN);
 
 	glutAddMenuEntry("White", WHITE); glutAttachMenu(GLUT_RIGHT_BUTTON); // attach right mouse button
 	glutMainLoop();
 
 }
+
+
+/*
+#include <gl/glut.h>
+#include <gl/glui.h>
+
+
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(300, 300);
+    glutCreateWindow("GLUI Example");
+
+    int red = 0;     // Checkbox state
+    int green = 0;   // Checkbox state
+    int blue = 0;    // Checkbox state
+    int colorChoice = 0;  // Radio button choice
+
+    GLUI* glui = GLUI_Master.create_glui("Color Controls");
+    glui->add_checkbox("Red", &red);
+    glui->add_checkbox("Green", &green);
+    glui->add_checkbox("Blue", &blue);
+
+    GLUI_RadioGroup* radioGroup = glui->add_radiogroup(&colorChoice);
+    glui->add_radiobutton_to_group(radioGroup, "Red");
+    glui->add_radiobutton_to_group(radioGroup, "Green");
+    glui->add_radiobutton_to_group(radioGroup, "Blue");
+
+    glui->set_main_gfx_window(glutGetWindow());  // Attach GLUI to main window
+
+    glutMainLoop();
+    return 0;
+}
+
+*/
