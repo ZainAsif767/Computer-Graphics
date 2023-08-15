@@ -26,6 +26,7 @@ void drawWall(int x1, int y1, int x2, int y2) {
 void renderMaze() {
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
+    glClearColor(1.0f, 0.0f, 0.0f, 0.0f); // Set background color to black
 
     // Draw the walls based on wall arrays
 
@@ -73,7 +74,6 @@ int main(int argc, char** argv) {
     glutInitWindowSize(800, 600);
     glutCreateWindow("Maze Program");
 
-    glClearColor(1.0f, 0.0f, 0.0f, 0.0f); // Set background color to black
     generateMaze();
 
     glutDisplayFunc(renderMaze);
