@@ -1,56 +1,86 @@
 #include <gl/glut.h>
 
-using namespace std;
-
-class Point {
+class Canvas {
 public:
     float x, y;
-
-    void moveToRel(float dx, float dy) {
-        this->x = this->x + dx;
-        this->y = this->y + dy;
+    Canvas() {
+        this->x = 180;
+        this->y = 200;
     }
 
-    void lineToRel(float dx, float dy) {
-        float x = this->x + dx;
-        float y = this->y + dy;
-
-        //glColor3f(1.0, 0.0, 0.0);
-        glLineWidth(2.0);
-
-        glBegin(GL_LINES);
-        glVertex2f(this->x, this->y);
-        glVertex2f(x, y);
-        glEnd();
-        glFlush();
-
+    void moveTo(float x, float y) {
         this->x = x;
         this->y = y;
     }
 
-    Point() {
-        this->x = 300;
-        this->y = 300;
+    void lineToRel(float dx, float dy) {
+        glBegin(GL_LINES);
+        glVertex2f(x, y);
+        x += dx;
+        y += dy;
+        glVertex2f(x, y);
+        glEnd();
+    }
+
+    void drawMarker() {
+        // Draw a marker at the current position (x, y)
+        glBegin(GL_POLYGON);
+        glVertex2f(x - 2, y - 2);
+        glVertex2f(x + 2, y - 2);
+        glVertex2f(x + 2, y + 2);
+        glVertex2f(x - 2, y + 2);
+        glEnd();
+    }
+
+    void arrow(float f, float h, float t, float w) {
+        lineToRel(-w - t / 2, -f); // down the left side
+        lineToRel(w, 0);
+        lineToRel(0, -h);
+        lineToRel(t, 0); // across
+        lineToRel(0, h); // back up
+        lineToRel(w, 0);
+        lineToRel(-w - t / 2, f);
     }
 };
 
 int screenWidth = 640;
 int screenHeight = 440;
-Point CP;
-
-
+Canvas CP;
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0, 1.0, 1.0);
-    CP.lineToRel(-50, -80);
-    CP.lineToRel(40, 0);
+
+    CP.moveTo(100, 200); // Move to the first data point
+
+    // Draw an arrow at the current position (x, y)
+    // CP.arrow(30, 60, 20, 10);
+
+    // Draw a marker at the CP
+    CP.drawMarker();
+
+    CP.lineToRel(-60, -80);
+    CP.drawMarker();
+
+    CP.lineToRel(50, 0);
+    CP.drawMarker();
+
     CP.lineToRel(0, -50);
-    CP.lineToRel(40, 0);
-    CP.lineToRel(0, 50);
+    CP.drawMarker();
+
     CP.lineToRel(30, 0);
+    CP.drawMarker();
+
+    CP.lineToRel(0, 50);
+    CP.drawMarker();
+
+    CP.lineToRel(40, 0);
+    CP.drawMarker();
+
     CP.lineToRel(-60, 80);
-    //glFlush();
+    CP.drawMarker();
+
+    glFlush();
 }
 
 int main(int argc, char** argv) {
@@ -58,7 +88,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(screenWidth, screenHeight);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("Arrow");
+    glutCreateWindow("Arrow Lab - 4");
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();

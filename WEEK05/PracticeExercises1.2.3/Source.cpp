@@ -108,7 +108,8 @@ void display() {
 
 
 	// 3.5.2 Drawing a well-known logo
-	/*cvs.forward(L, 1);
+	/*float L = 100.0;
+	cvs.forward(L, 1);
 	cvs.turn(320);
 	cvs.forward(L, 1);
 	cvs.turn(220);
@@ -126,13 +127,30 @@ void display() {
 	cvs.turn(40);
 	cvs.forward(L * 2, 1);
 
-	cvs.turn(85);
+	cvs.turn(90);
 	cvs.forward(L, 1);
-	cvs.turn(105);
+	cvs.turn(100);
 	cvs.forward(L, 1);
-	cvs.turn(75);
+	cvs.turn(80);
 	cvs.forward(L, 1);*/
 
+	cvs.forward(100, 0);
+
+	// 3.5.3 Driving the turtle with strings
+	string input = "FLFLFLFRFLFLFLFRFLFLFLFR";
+	for (char key : input) {
+		switch (key) {
+		case 'F':
+			cvs.forward(30, 1);
+			break;
+		case 'L':
+			cvs.turn(60);
+			break;
+		case 'R':
+			cvs.turn(-60);
+			break;
+		}
+	}
 	glFlush();
 }
 
@@ -150,6 +168,7 @@ void myKeys(unsigned char key, int x, int y) {
 		cvs.turn(-60);
 		break;
 	}
+	
 }
 int main(int argc, char** argv) {
 		glutInit(&argc, argv);
