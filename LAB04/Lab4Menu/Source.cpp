@@ -18,8 +18,9 @@ green = 1.0; // possible triangle colors.
 
 void renderScene(void) {
 	// the callback to draw the triangle
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
 	glRotatef(angle, 0.0, 1.0, 0.0); // rotate the triangle a little more 
 	glColor3f(red, green, blue);// change its color
 
@@ -28,7 +29,6 @@ void renderScene(void) {
 
 	glVertex3f(0.5, 0.0, 0.0);
 	glVertex3f(0.0, 0.5, 0.0);
-
 
 	glEnd();
 	angle++;
@@ -89,10 +89,11 @@ void main(int argc, char** argv) {
 	glutAddMenuEntry("Red", RED);
 	glutAddMenuEntry("Blue", BLUE);
 	glutAddMenuEntry("Green", GREEN);
+	glutAddMenuEntry("White", WHITE);
 
-	glutAddMenuEntry("White", WHITE); glutAttachMenu(GLUT_RIGHT_BUTTON); // attach right mouse button
+	glutAttachMenu(GLUT_RIGHT_BUTTON); // attach right mouse button
+
 	glutMainLoop();
-
 }
 
 
