@@ -265,7 +265,7 @@ int main(int argc, char** argv) {
 	glutCreateWindow("My Mario");
 
 	glutDisplayFunc(myDisplay);
-	PlaySoundW(L"MarioSong.wav", NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
+	//PlaySound(L"MarioSong.wav", NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
 	glutSpecialFunc(pressKeySpecial);
 	glutSpecialUpFunc(releaseKeySpecial);
 	glutKeyboardFunc(myKB_Handler);
