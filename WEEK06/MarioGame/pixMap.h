@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <gl/glut.h>
 #include <gl/GL.h>
+#include <stdio.h>
 
 using std::fstream;
 using std::ios;
@@ -195,8 +196,8 @@ public:
 	}
 	// *** read BMP file into this pixel map (see RGBpixmap.cpp)
 	int readBMPFile(string fname, float para);
-	void RGBAmixmap::setChromaKey(int r, int g, int b);
-	RGBApixmap& RGBApixmap::rotateImage(void);
+	void setChromaKey(int r, int g, int b);
+	RGBApixmap& rotateImage(void);
 	int writeBMPFile(string fname); // write this pixmap to a BMP file
 
 
@@ -263,21 +264,20 @@ int RGBApixmap::readBMPFile(string fname, float para)
 	long count = 0;
 
 
+	errno_t err;
 
-	/* open the file */
-	if ((fp = fopen(fname.c_str(), "rb")) == NULL)
+	err = fopen_s(&fp, fname.c_str(), "rb");
+	if (err != 0 || !fp)
 	{
-		printf("Error opening file %s.\n", fname);
+		printf("Error opening file %s.\n", fname.c_str());
 		exit(1);
 	}
-
-
 
 	/* check to see if it is a valid bitmap file */
 	if (fgetc(fp) != 'B' || fgetc(fp) != 'M')
 	{
 		fclose(fp);
-		printf("%s is not a bitmap file.\n", fname);
+		printf("%s is not a bitmap file.\n", fname.c_str());
 		exit(1);
 	}
 
@@ -330,9 +330,9 @@ int RGBApixmap::readBMPFile(string fname, float para)
 
 
 	//dum;
-	for (row = 0; row < numRows; row++) // read pixel values
+	for (row = 0; row < static_cast<int>(numRows); row++) // read pixel values
 	{
-		for (col = 0; col < numCols; col++)
+		for (col = 0; col < static_cast<int>(numCols); col++)
 		{
 			int r, g, b;
 			b = fgetc(fp);
@@ -340,11 +340,23 @@ int RGBApixmap::readBMPFile(string fname, float para)
 			r = fgetc(fp);			// read bytes
 
 
-			pixel[count].r = r;	// place them in colors
-			pixel[count].g = g;
-			pixel[count].b = b;
+			// my added code 
+			if (count < nRows * nCols)
+			{
+            #pragma warning(disable: 6386)
+				pixel[count].r = r;
+				pixel[count].g = g;
+				pixel[count].b = b;
+				pixel[count].a = 255;
+				count++;
+            #pragma warning(default: 6386)
+			}
 
-			pixel[count++].a = 255;
+			//pixel[count].r = r;	// place them in colors
+			//pixel[count].g = g;
+			//pixel[count].b = b;
+
+			//pixel[count++].a = 255;
 
 		}
 
@@ -359,13 +371,18 @@ int RGBApixmap::readBMPFile(string fname, float para)
 
 } // end of readBMPFile
 
+inline int RGBApixmap::writeBMPFile(string fname)
+{
+	return 0;
+}
+
 
 void RGBApixmap::setChromaKey(int r, int g, int b)
 {
 	long count = 0;
 
-	for (int row = 0; row < this->nCols; row++)
-		for (int col = 0; col < this->nRows; col++)
+	for (int row = 0; row <this->nCols; row++)
+		for (int col = 0; col <this->nRows; col++)
 		{
 			mRGBA p = pixel[count];
 
@@ -375,6 +392,6 @@ void RGBApixmap::setChromaKey(int r, int g, int b)
 			else
 				pixel[count++].a = 255;
 
-		}
+			}
 }
 
