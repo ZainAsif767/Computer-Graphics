@@ -80,3 +80,4 @@ obj/
 *.pdm
 *.svclog
 *.sln.docstates
+*.h
