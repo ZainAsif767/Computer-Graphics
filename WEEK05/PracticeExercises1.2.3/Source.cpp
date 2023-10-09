@@ -6,12 +6,48 @@ using namespace std;
 
 int screenWidth = 640;
 int screenHeight = 480;
+class GLintPoint{
+public:
+	GLint x, y;
+};
 
-class Canvas {
+class Point2
+{
+public:
+	float x, y;
+
+	void set(float dx, float dy)
+	{
+		x = dx;
+		y = dy;
+	}
+
+	void set(Point2& p)
+	{
+		x = p.x;
+		y = p.y;
+	}
+
+	Point2(float xx, float yy)
+	{
+		x = xx;
+		y = yy;
+	}
+
+	Point2()
+	{
+		x = y = 0;
+	}
+};
+
+class Turtle {
+private:
+	int CD = 90;
+	Point2 CP;
 public:
 	float x, y;
 	float angle;
-	Canvas() {
+	Turtle() {
 		this->x = 225;
 		this->y = 200;
 	}
@@ -55,7 +91,7 @@ public:
 
 
 float increment = 3;
-Canvas cvs;
+Turtle turtle;
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -65,12 +101,12 @@ void display() {
 	for (int j = 0; j < 4; j++) {
 
 		for (int i = 0; i < 4; i++) {
-			cvs.forward(L, 1);
-			cvs.turn(90);
-			cvs.forward(L, 1);
-			cvs.turn(90);
-			cvs.forward(L, 1);
-			cvs.turn(90);
+			turtle.forward(L, 1);
+			turtle.turn(90);
+			turtle.forward(L, 1);
+			turtle.turn(90);
+			turtle.forward(L, 1);
+			turtle.turn(90);
 		}
 		L -= 40;
 	}*/
@@ -78,76 +114,76 @@ void display() {
 	//3.5.1 part (b)
 	/*for (int j = 0; j < 4; j++) {
 
-		cvs.forward(L, 1);
-		cvs.turn(90);
-		cvs.forward(L, 1);
-		cvs.turn(90);
+		turtle.forward(L, 1);
+		turtle.turn(90);
+		turtle.forward(L, 1);
+		turtle.turn(90);
 		L -= 20;
-		cvs.forward(L, 1);
-		cvs.turn(90);
-		cvs.forward(L, 1);
-		cvs.turn(90);
+		turtle.forward(L, 1);
+		turtle.turn(90);
+		turtle.forward(L, 1);
+		turtle.turn(90);
 		L -= 20;
 	}*/
 
 	// 3.5.1 part (c)
 	/*float L = 200.0;
-	cvs.forward(L, 1);
-	cvs.turn(120);
-	cvs.forward(L / 2, 1);
-	cvs.turn(120);
-	cvs.forward(L / 2, 1);
-	cvs.turn(240);
-	cvs.forward(L / 2, 1);
-	cvs.turn(240);
-	cvs.forward(L / 2, 1);
-	cvs.turn(120);
-	cvs.forward(L / 2, 1);
-	cvs.turn(120);
-	cvs.forward(L, 1);*/
+	turtle.forward(L, 1);
+	turtle.turn(120);
+	turtle.forward(L / 2, 1);
+	turtle.turn(120);
+	turtle.forward(L / 2, 1);
+	turtle.turn(240);
+	turtle.forward(L / 2, 1);
+	turtle.turn(240);
+	turtle.forward(L / 2, 1);
+	turtle.turn(120);
+	turtle.forward(L / 2, 1);
+	turtle.turn(120);
+	turtle.forward(L, 1);*/
 
 
 	// 3.5.2 Drawing a well-known logo
 	/*float L = 100.0;
-	cvs.forward(L, 1);
-	cvs.turn(320);
-	cvs.forward(L, 1);
-	cvs.turn(220);
-	cvs.forward(L, 1);
-	cvs.turn(320);
-	cvs.forward(L, 1);
+	turtle.forward(L, 1);
+	turtle.turn(320);
+	turtle.forward(L, 1);
+	turtle.turn(220);
+	turtle.forward(L, 1);
+	turtle.turn(320);
+	turtle.forward(L, 1);
 
-	cvs.turn(40);
+	turtle.turn(40);
 
-	cvs.forward(L, 1);
-	cvs.turn(40);
-	cvs.forward(L, 1);
-	cvs.turn(140);
-	cvs.forward(L, 1);
-	cvs.turn(40);
-	cvs.forward(L * 2, 1);
+	turtle.forward(L, 1);
+	turtle.turn(40);
+	turtle.forward(L, 1);
+	turtle.turn(140);
+	turtle.forward(L, 1);
+	turtle.turn(40);
+	turtle.forward(L * 2, 1);
 
-	cvs.turn(90);
-	cvs.forward(L, 1);
-	cvs.turn(100);
-	cvs.forward(L, 1);
-	cvs.turn(80);
-	cvs.forward(L, 1);*/
+	turtle.turn(90);
+	turtle.forward(L, 1);
+	turtle.turn(100);
+	turtle.forward(L, 1);
+	turtle.turn(80);
+	turtle.forward(L, 1);*/
 
-	cvs.forward(100, 0);
+	turtle.forward(100, 0);
 
 	// 3.5.3 Driving the turtle with strings
 	string input = "FLFLFLFRFLFLFLFRFLFLFLFR";
 	for (char key : input) {
 		switch (key) {
 		case 'F':
-			cvs.forward(30, 1);
+			turtle.forward(30, 1);
 			break;
 		case 'L':
-			cvs.turn(60);
+			turtle.turn(60);
 			break;
 		case 'R':
-			cvs.turn(-60);
+			turtle.turn(-60);
 			break;
 		}
 	}
@@ -159,13 +195,13 @@ void myKeys(unsigned char key, int x, int y) {
     int L = 30;
 	switch (key) {
 	case 'f':
-		cvs.forward(L, 1);
+		turtle.forward(L, 1);
 		break;
 	case 'l':
-		cvs.turn(60);
+		turtle.turn(60);
 		break;
 	case 'r':
-		cvs.turn(-60);
+		turtle.turn(-60);
 		break;
 	}
 	

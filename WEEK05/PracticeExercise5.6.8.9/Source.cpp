@@ -7,11 +7,11 @@ using namespace std;
 int screenWidth = 740;
 int screenHeight = 480;
 
-class Canvas {
+class ninja {
 public:
 	float x, y;
 	float angle;
-	Canvas() {
+	ninja() {
 		this->x = 150;
 		this->y = 200;
 	}
@@ -23,7 +23,7 @@ public:
 	}
 	void lineTo(float x, float y) {
 		float t_x = x; float t_y = y;
-		glColor3f(1.0, 0.0, 0.0);
+		glColor3f(1.2, 1.0, 0.5);
 		glLineWidth(2.0);
 		glBegin(GL_LINES);
 		glVertex2f(this->x, this->y);
@@ -53,15 +53,15 @@ public:
 };
 
 float increment = 3;
-Canvas cvs;
+ninja ninja;
 
 // Practice Qustion 3.5.9
 void PolySpiral(float dist) {
 	if (dist > 200) {
 		return;
 	}
-	cvs.forward(dist, 1);
-	cvs.turn(-144);
+	ninja.forward(dist, 1);
+	ninja.turn(-144);
 	dist += increment;
 	PolySpiral(dist + increment);
 }
@@ -72,60 +72,60 @@ void display() {
 	// part a 
 	/* float L = 70.0;
 	for (int i = 0; i < 3; i++) {
-		cvs.forward(L, 1);
-		cvs.turn(90);
-		cvs.forward(L - 20, 1);
-		cvs.turn(90);
-		cvs.forward(L / 2,1);
-		cvs.turn(270);
-		cvs.forward(L/2, 1);
-		cvs.turn(270);
-		cvs.forward(L + 20, 1);
-		cvs.turn(270);
-		cvs.forward(L / 2, 1);
-		cvs.turn(270);
-		cvs.forward(L / 2, 1);
-		cvs.turn(90);
-		cvs.forward(L - 20, 1);
-		cvs.turn(90);
-		cvs.forward(L, 1);
+		ninja.forward(L, 1);
+		ninja.turn(90);
+		ninja.forward(L - 20, 1);
+		ninja.turn(90);
+		ninja.forward(L / 2,1);
+		ninja.turn(270);
+		ninja.forward(L/2, 1);
+		ninja.turn(270);
+		ninja.forward(L + 20, 1);
+		ninja.turn(270);
+		ninja.forward(L / 2, 1);
+		ninja.turn(270);
+		ninja.forward(L / 2, 1);
+		ninja.turn(90);
+		ninja.forward(L - 20, 1);
+		ninja.turn(90);
+		ninja.forward(L, 1);
 	}*/
 
 	// 3.5.5 part b
 	float L = 70.0;	
 	for (int i = 0; i < 3; i++) {
-		cvs.forward(L, 1);
-		cvs.turn(90);
-		cvs.forward(L - 20, 1);
-		cvs.turn(90);
-		cvs.forward(L / 2, 1);
-		cvs.turn(270);
-		cvs.forward(L / 2, 1);
-		cvs.turn(270);
-		cvs.forward(L-20, 1);
-		cvs.turn(270);
-		cvs.forward(15, 1);
-		cvs.turn(90);
-		cvs.forward(25, 1);
-		cvs.turn(90);
-		cvs.forward(15, 1);
-		cvs.turn(270);
-		cvs.forward(L - 20, 1);
-		cvs.turn(270);
-		cvs.forward(L / 2, 1);
-		cvs.turn(270);
-		cvs.forward(L / 2, 1);
-		cvs.turn(90);
-		cvs.forward(L - 20, 1);
-		cvs.turn(90);
-		cvs.forward(L, 1);
+		ninja.forward(L, 1);
+		ninja.turn(90);
+		ninja.forward(L - 20, 1);
+		ninja.turn(90);
+		ninja.forward(L / 2, 1);
+		ninja.turn(270);
+		ninja.forward(L / 2, 1);
+		ninja.turn(270);
+		ninja.forward(L-20, 1);
+		ninja.turn(270);
+		ninja.forward(15, 1);
+		ninja.turn(90);
+		ninja.forward(25, 1);
+		ninja.turn(90);
+		ninja.forward(15, 1);
+		ninja.turn(270);
+		ninja.forward(L - 20, 1);
+		ninja.turn(270);
+		ninja.forward(L / 2, 1);
+		ninja.turn(270);
+		ninja.forward(L / 2, 1);
+		ninja.turn(90);
+		ninja.forward(L - 20, 1);
+		ninja.turn(90);
+		ninja.forward(L, 1);
 	}
 
 	// 3.5.8 . Is a Polyspiral an IFS ? (example 3.5.3) 
 	/*float L = 80.0;
 	for (int i = 0; i < 50; i++) {
-		cvs.forward(L, 1);
-		cvs.turn(-144);
+		ninja.forward(L, 1);
+		ninja.turn(-144);
 		L += increment;
 	}	*/
 
@@ -139,21 +139,21 @@ void display() {
 	for (int i = 0; i < 24; i++) {
 		if (!limitReached && L == 0) {
 			L = 10;
-			cvs.forward(L, 1);
-			cvs.turn(-90);
+			ninja.forward(L, 1);
+			ninja.turn(-90);
 			limitReached = true;
 		}
 		if (!limitReached && L >= 10) {
 			cout << i << L << endl;
-			cvs.forward(L, 1);
-			cvs.turn(90);
-			cout << "curr-angle:" << cvs.angle << endl;
+			ninja.forward(L, 1);
+			ninja.turn(90);
+			cout << "curr-angle:" << ninja.angle << endl;
 			L -= 10;
 		}
 		if (limitReached && L <= 80 + 10) {
 			cout << i << L << endl;
-			cvs.forward(L, 1);
-			cvs.turn(-90);
+			ninja.forward(L, 1);
+			ninja.turn(-90);
 			L += 10;
 		}
 	}*/
