@@ -106,6 +106,10 @@ public:
 
     void lineTo(float x, float y);
     void lineTo(Point2 p);
+    void initCT(void);
+    void scale2D(double sx, double sy);
+    void translate2D(double dx, double dy);
+    void rotate2D(double angle);
 
 
     // others later
@@ -201,6 +205,34 @@ void Canvas::lineTo(Point2 p)
     // Update the current position to the end of the line
     CP = p;
 }
+
+void Canvas::initCT(void)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();  // set CT to the identity matrix
+}
+
+void Canvas::scale2D(double sx, double sy)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glScaled(sx, sy, 1.0); // set CT to CT * (2D scaling)
+}
+
+void Canvas::translate2D(double dx, double dy)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glTranslated(dx, dy, 1.0); // set CT to CT * (2D trasnlation)
+}
+
+void Canvas::rotate2D(double angle)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glRotated(angle, 0.0, 0.0, 1.0); // set CT to CT * (2D roation)
+}
+
+
+
+
 
 
 
