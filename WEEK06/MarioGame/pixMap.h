@@ -14,16 +14,13 @@ using std::string;
 using std::cout;
 using std::endl;
 
-
 // ********** mRGBA class **********
 typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned long  ulong;
 
 class mRGBA { // the name RGBA is already used by Windows
-
 public:
-
 	unsigned char r, g, b, a;
 	mRGBA() { r = g = b = 0; a = 255; }
 	mRGBA(mRGBA& p) { r = p.r; g = p.g; b = p.b; a = p.a; }
@@ -36,11 +33,8 @@ public:
 	{
 		r = rr; g = gg; b = bb; a = aa;
 	}
-
 };
-
 /********** RGBPixmap class ************/
-
 
 //helper function
 unsigned short getShort(FILE* fp)
@@ -58,17 +52,13 @@ unsigned short getShort(FILE* fp)
 	ip |= ((unsigned short)ic << 8);	// or in high order byte
 
 	return ip;
-
 }
-
-
 
 //helper function
 unsigned long getLong(FILE* fp)
 {
 	//BMP format uses little-endian integer types
 	// get a 4-byte integer stored in little-endian form
-
 	unsigned long ip = 0;
 	char ic = 0;
 	unsigned char uc = ic;
@@ -92,24 +82,16 @@ unsigned long getLong(FILE* fp)
 
 }
 
-
-
 void fskip(FILE* fp, int num_bytes)
 {
-
 	int i;
 
 	for (i = 0; i < num_bytes; i++)
 		fgetc(fp);
-
 }
-
-
-
 
 float fx(float x, float a0, float a1)
 {
-
 	float y, t;
 
 	t = x / a1;
@@ -117,15 +99,12 @@ float fx(float x, float a0, float a1)
 	y = a0 * exp(-(t * t));
 
 	return y;
-
 }
-
 
 class RGBApixmap
 {
 private:
 	mRGBA* pixel;  // array of pixels
-
 public:
 	int nRows, nCols;                       // dimensions of pixel map
 	RGBApixmap() { nRows = nCols = 0; pixel = 0; }
@@ -172,6 +151,7 @@ public:
 
 	// *** setPixel 
 
+
 	void setPixel(int x, int y, mRGBA color) {
 
 		if (x >= 0 && x < nCols && y >= 0 && y < nRows)
@@ -194,6 +174,22 @@ public:
 		return pixel[nCols * y + x];
 
 	}
+
+	unsigned char getRed(int row, int col)
+	{
+		return pixel[nCols * row + col].r;
+	}
+
+	unsigned char getGreen(int row, int col)
+	{
+		return pixel[nCols * row + col].g;
+	}
+
+	unsigned char getBlue(int row, int col)
+	{
+		return pixel[nCols * row + col].b;
+	}
+
 	// *** read BMP file into this pixel map (see RGBpixmap.cpp)
 	int readBMPFile(string fname, float para);
 	void setChromaKey(int r, int g, int b);
@@ -392,6 +388,6 @@ void RGBApixmap::setChromaKey(int r, int g, int b)
 			else
 				pixel[count++].a = 255;
 
-			}
+		}
 }
 
