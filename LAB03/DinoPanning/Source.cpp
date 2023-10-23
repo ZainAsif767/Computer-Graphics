@@ -111,7 +111,7 @@ void myKeys(unsigned char key, int x, int y)
 	case 'w': 
 		viewportYmin += 2;
 		break;
-	/*
+	
 	case 's':
 		viewportYmax -= 2;
 		break;
@@ -121,7 +121,7 @@ void myKeys(unsigned char key, int x, int y)
 	case 'd':
 		viewportXmax -= 2;
 		break;
-	*/
+	
 	default:
 		break;
 	}
