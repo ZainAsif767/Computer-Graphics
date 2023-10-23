@@ -1,4 +1,6 @@
 #include <gl/glut.h>
+#include <iostream>
+using namespace std;
 
 class Canvas {
 public:
@@ -54,8 +56,9 @@ void display() {
     CP.moveTo(100, 200); // Move to the first data point
 
     // Draw an arrow at the current position (x, y)
-    // CP.arrow(30, 60, 20, 10);
+     CP.arrow(60, 40, 40, 20);
 
+     CP.moveTo(300, 300);
     // Draw a marker at the CP
     CP.drawMarker();
 
