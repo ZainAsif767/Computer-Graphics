@@ -5,12 +5,9 @@
 #include <fstream>
 #include <math.h>
 
-
-
 using std::cout;
 using std::fstream;
 using std::ios;
-
 
 const int screenWidth = 650;	   // width of screen window in pixels 
 const int screenHeight = 450;	   // height of screen window in pixels
@@ -33,10 +30,6 @@ void drawPolyLineFile(const char* fileName)
 		cout << "can't open it!"; return;
 	}
 
-	// clear the screen
-
-//GLint numpolys, numPoints, x ,y;
-
 	GLfloat numpolys, numPoints, x, y;
 	inStream >> numpolys;		           // read the number of polylines
 
@@ -55,7 +48,6 @@ void drawPolyLineFile(const char* fileName)
 	inStream.close();
 }
 
-
 void myInit(void)
 {
 	glClearColor(1.0, 1.0, 1.0, 0.0);       // background color is white
@@ -68,32 +60,22 @@ void myInit(void)
 
 }
 
-
 void myDisplay(void)
 {
-
 	glClear(GL_COLOR_BUFFER_BIT);
-	//drawPolyLineFile("birdhead.dat");		   // send all output to display
-	//drawPolyLineFile("house.dat");
 	setWindow(0, 640, 0, 480);
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
 			glViewport(i * 64, j * 44, 64, 44);
 			drawPolyLineFile("dino.txt");
-
 		}
 	}
 	glFlush();
 	glutSwapBuffers();
-
-
 }
-
-
 
 int main(int argc, char** argv)
 {
-
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // set display mode
 	glutInitWindowSize(screenWidth, screenHeight); // set window size
 	glutInitWindowPosition(10, 10); // set window position on screen
