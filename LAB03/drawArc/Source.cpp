@@ -19,7 +19,7 @@ public:
 };
 
 void moveTo(const Point2& p) {
-    glBegin(GL_LINES);
+    glBegin(GL_LINE_STRIP);
     glVertex2f(p.x, p.y);
 }
 
@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(640, 480);
     glutInitWindowPosition(30, 30);
-    glutCreateWindow("Lab 3 - ngon and Arc");
+    glutCreateWindow("Drawing an Arc");
     glClearColor(1.0, 1.0, 1.0, 1.0); // Set clear color to white
     glutDisplayFunc(display);
     glutMainLoop();
