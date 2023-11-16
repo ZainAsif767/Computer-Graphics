@@ -14,3 +14,5 @@ A repository for all OpenGL code... being updated
 # Lab 6
 
 # Lab 7
+
+# Lab 8
