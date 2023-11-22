@@ -1,6 +1,6 @@
 # Computer-Graphics
 
-A repository for all OpenGL code... being updated 
+A repository for all OpenGL code... being updated gradually
 # Lab 1
 
 # Lab 2
