@@ -45,8 +45,8 @@ void lineTo(Point2 p)
 void myInit(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glClearColor(0.0, 0.0, 0.0, 1.0); // background is black
-	glColor3f(1.0, 0.0, 1.0); // drawing color is purple
+	glClearColor(1.0, 1.0, 1.0, 1.0); // background is white
+	glColor3f(1.0, 0.0, 0.0); // drawing color is red
 }
 
 void rosette(int N, float radius)
@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
 	glLoadIdentity();
 	glutInitWindowSize(screenWidth, screenHeight);
 	glutInitWindowPosition(30, 30);
-	glutCreateWindow("Lab 3 - Rossete");
+	glutCreateWindow("Lab 4 - Fig3.27");
 	glutDisplayFunc(display);
 
 	myInit();

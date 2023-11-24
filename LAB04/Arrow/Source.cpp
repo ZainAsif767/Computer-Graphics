@@ -17,6 +17,7 @@ public:
 
     void lineToRel(float dx, float dy) {
         glBegin(GL_LINES);
+        glColor3f(0.0, 0.0, 0.0);
         glVertex2f(x, y);
         x += dx;
         y += dy;
@@ -27,6 +28,7 @@ public:
     void drawMarker() {
         // Draw a marker at the current position (x, y)
         glBegin(GL_POLYGON);
+        glColor3f(0.0, 0.0, 0.0);
         glVertex2f(x - 2, y - 2);
         glVertex2f(x + 2, y - 2);
         glVertex2f(x + 2, y + 2);
@@ -49,9 +51,14 @@ int screenWidth = 640;
 int screenHeight = 440;
 Canvas CP;
 
+void init() {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(1.0, 1.0, 1.0, 0.0);
+    glColor3f(0.0, 0.0, 0.0);
+}
+
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(1.0, 1.0, 1.0);
 
     CP.moveTo(100, 200); // Move to the first data point
 
@@ -100,6 +107,7 @@ int main(int argc, char** argv) {
 
     glutDisplayFunc(display);
 
+    init();
     glutMainLoop();
     return 0;
 }

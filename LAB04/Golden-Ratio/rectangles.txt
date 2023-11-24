@@ -1,0 +1,88 @@
+
+
+// this code below creates regression of multiple rectangles in eachother with different colors 
+
+#include <gl/glut.h>
+
+using namespace std;
+// Function to draw the golden rectangle with a specified color
+void setColor(float r, float g, float b)
+{
+    glColor3f(r, g, b);
+}
+
+void drawRectangle(float left, float right, float bottom, float top)
+{
+    glBegin(GL_TRIANGLE_STRIP);
+    glVertex2f(left, bottom);
+    glVertex2f(right, bottom);
+    glVertex2f(left, top);
+    glVertex2f(right, top);
+    glEnd();
+}
+
+void drawGoldenRectangle(float centerX, float centerY, float rectWidth, float rectHeight, float r, float g, float b)
+{
+    setColor(r, g, b);
+
+    float halfWidth = rectWidth / 2;
+    float halfHeight = rectHeight / 2;
+
+    float left = centerX - halfWidth;
+    float right = centerX + halfWidth;
+    float bottom = centerY - halfHeight;
+    float top = centerY + halfHeight;
+
+    drawRectangle(left, right, bottom, top);
+}
+
+// Display callback function
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(-1, 1, -1, 1);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    // Calculate initial center and size for the golden rectangle
+    float centerX = 0.0f;
+    float centerY = 0.0f;
+    float rectWidth = 1.5f;
+    float rectHeight = 1.5f;
+
+    // Draw the regression of golden rectangles with different colors
+    for (int i = 0; i < 12; ++i)
+    {
+        float r = (i / 10.0f);      // Varies from 0.0 to 1.0
+        float g = (0.8f - r);       // Varies from 1.0 to 0.0
+        float b = (1.0f + r / 2);   // Varies from 0.5 to 1.0
+
+        drawGoldenRectangle(centerX, centerY, rectWidth, rectHeight, r, g, b);
+
+        // Update center and size for the next rectangle
+        centerX *= 0.9f;
+        centerY *= 0.9f;
+        rectWidth *= 0.9f;
+        rectHeight *= 0.9f;
+    }
+
+    glFlush();
+}
+
+int main(int argc, char** argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(600, 400);
+    glutInitWindowPosition(300, 200);
+    glutCreateWindow("Golden Rectangles");
+
+    glutDisplayFunc(display);
+    glutMainLoop();
+
+    return 0;
+}
