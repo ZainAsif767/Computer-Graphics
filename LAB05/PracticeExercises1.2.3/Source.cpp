@@ -93,10 +93,16 @@ public:
 float increment = 3;
 Turtle turtle;
 
+void init() {
+	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
+	glColor3f(0.0, 0.0, 0.0);
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
-	// 3.5.1 Drawing Turtles Figure
-	// part (a)
+	 //3.5.1 Drawing Turtles Figure
+	 //part (a)
 	/*float L = 200.0;
 	for (int j = 0; j < 4; j++) {
 
@@ -112,7 +118,8 @@ void display() {
 	}*/
 
 	//3.5.1 part (b)
-	/*for (int j = 0; j < 4; j++) {
+	/*float L = 200.0;
+	for (int j = 0; j < 4; j++) {
 
 		turtle.forward(L, 1);
 		turtle.turn(90);
@@ -190,7 +197,7 @@ void display() {
 	glFlush();
 }
 
-// 3.5.3 Driving the turtle with strings
+ //3.5.3 Driving the turtle with strings
 void myKeys(unsigned char key, int x, int y) {
     int L = 30;
 	switch (key) {
@@ -221,6 +228,7 @@ int main(int argc, char** argv) {
 		glutDisplayFunc(display);
 		glutKeyboardFunc(myKeys);
 
+		init();
 		glutMainLoop();
 		return 0;
 }

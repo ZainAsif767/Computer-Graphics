@@ -23,7 +23,7 @@ public:
 	}
 	void lineTo(float x, float y) {
 		float t_x = x; float t_y = y;
-		glColor3f(1.2, 1.0, 0.5);
+		glColor3f(0.0, 0.0, 0.0);
 		glLineWidth(2.0);
 		glBegin(GL_LINES);
 		glVertex2f(this->x, this->y);
@@ -66,11 +66,16 @@ void PolySpiral(float dist) {
 	PolySpiral(dist + increment);
 }
 
+void init() {
+	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	// 3.5.5 Classes of Meanders 
 	// part a 
-	/* float L = 70.0;
+	 /*float L = 70.0;
 	for (int i = 0; i < 3; i++) {
 		ninja.forward(L, 1);
 		ninja.turn(90);
@@ -92,7 +97,8 @@ void display() {
 	}*/
 
 	// 3.5.5 part b
-	float L = 70.0;	
+	/*float L = 70.0;	
+	ninja.moveTo(40, 200);
 	for (int i = 0; i < 3; i++) {
 		ninja.forward(L, 1);
 		ninja.turn(90);
@@ -119,7 +125,7 @@ void display() {
 		ninja.forward(L - 20, 1);
 		ninja.turn(90);
 		ninja.forward(L, 1);
-	}
+	}*/
 
 	// 3.5.8 . Is a Polyspiral an IFS ? (example 3.5.3) 
 	/*float L = 80.0;
@@ -130,11 +136,12 @@ void display() {
 	}	*/
 
 	// 3.5.9  Recursive form for Polyspiral()
-	//PolySpiral(L);
+	/*float L = 80.0;
+	PolySpiral(L);*/
 
 
 	// 3.5.6  Drawing Elaborate Meanders.
-	/*float L = 80.0;
+	float L = 80.0;
 	bool limitReached = false;
 	for (int i = 0; i < 24; i++) {
 		if (!limitReached && L == 0) {
@@ -156,7 +163,7 @@ void display() {
 			ninja.turn(-90);
 			L += 10;
 		}
-	}*/
+	}
 	glFlush();
 
 }
@@ -175,6 +182,7 @@ int main(int argc, char** argv) {
 
 	glutDisplayFunc(display);
 
+	init();
 	glutMainLoop();
 	return 0;
 }

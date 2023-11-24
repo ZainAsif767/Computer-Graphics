@@ -129,6 +129,7 @@ Turtle ninja;
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
 	// 3.5.2 (Example Motif)
 	//for part(a) set i < 1, for part(b) set i < 4
 	for (int i = 0; i < 4; i++) {
