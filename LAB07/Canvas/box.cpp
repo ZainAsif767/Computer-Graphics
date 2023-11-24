@@ -122,8 +122,8 @@ void display(void)
 
     // ***************PRACTICING Simple Line DRAWING************//
      //drawStar();
-    drawSmiley();
-   //drawSun();
+    //drawSmiley();
+   drawSun();
 
      // ***************END RELATIVE DRAWING*********************//
 
