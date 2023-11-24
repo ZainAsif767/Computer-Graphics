@@ -46,7 +46,7 @@ void lineTo(Point2 p)
 void myInit(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glClearColor(1.0, 0.0, 0.0, 0.0); // background is red
+	glClearColor(1.0, 1.0, 1.0, 0.0); // background is red
 	glColor3f(0.0, 0.0, 1.0); // drawing color is blue
 }
 
